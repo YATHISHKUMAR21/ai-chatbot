@@ -19,7 +19,7 @@
 // const { GoogleGenAI } = require("@google/genai");
 
 // const ai = new GoogleGenAI({
-//     apiKey: "AIzaSyBXEbhs0Jr-6U6MmyY77axnnhyjBLTPVvw"
+//     apiKey: ""
 // });
 
 // async function generateResponse(prompt) {
