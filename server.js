@@ -1,23 +1,29 @@
 const app = require("./src/app");
-const http = require("http");
-const { Server } = require("socket.io");
+const {createServer} = require("http");
+const {Server} = require("socket.io");
 
-const httpServer = http.createServer(app);
+const httpServer = createServer(app);
 
 const io = new Server(httpServer, {
-  cors: {
-    origin: "*",
-  },
+    cors: {
+        origin: "*",
+        methods: ["GET", "POST"]
+    }
 });
 
-io.on("connection", (socket) => {
-  console.log("New client connected:", socket.id);
-
-  socket.on("disconnect", () => {
-    console.log("Client disconnected:", socket.id);
-  });
+io.on("connection", (socket)=>{
+    console.log("a user connected");  
+    socket.on("disconnect", ()=>{
+        console.log("user disconnected");
+    });
 });
 
-httpServer.listen(3000, () => {
-  console.log("Server is running on port 3000");
-});
+const PORT = process.env.PORT || 3000;
+
+httpServer.listen(PORT, ()=>{
+    console.log(`Server is running on port ${PORT}`);
+}); 
+
+
+
+
